@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">수강생 등록</h1>
+<p class="mb-4"> 수강생 등록 화면입니다
+    </p>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">수강생 등록</h6>
+    </div>
+    <div class="card-body">
+        <div>
+          <form action = "{% url 'studentapp:create' %}" method ="post">
+            {% csrf_token %}
+            {% bootstrap_form form%}
+            <input type = "submit" value="수강생 등록" class = 'btn btn-dark rounded-pill col-8 mt-4' width="100" >
+          </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

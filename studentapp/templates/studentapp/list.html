@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+ <!-- Custom styles for this template -->
+    <link href="/static/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link href="/static/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">학생 리스트</h1>
+<p class="mb-4">포엠학원에 등록된 모든 학생들의 리스트입니다
+    </p>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">학생 리스트</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <div style="margin-bottom:1rem">
+            <a href="{% url 'studentapp:create' %}" class="btn btn-success btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-user-plus"></i>
+                                        </span>
+                                        <span class="text">생성</span>
+                                    </a>
+            <a href="#" class="btn btn-danger btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-trash"></i>
+                                        </span>
+                                        <span class="text">삭제</span>
+                                    </a>
+            </div>
+
+            <table id="dataTable" class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>이름</th>
+                            <th>학교</th>
+                            <th>학년</th>
+                            <th>번호</th>
+                            <th>등록일</th>
+                            <th>등록수업(수)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for student in student_list %}
+                        <tr>
+                            <td>{{ student.name }}</td>
+                            <td>{{ student.school }}</td>
+                            <td>{{ student.grade }}</td>
+                            <td>{{ student.phone_number }}</td>
+                            <td>{{ student.joined_at}}</td>
+                            <td>{{ student.lectures.all|length }}</td>
+                        </tr>
+                        {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <div>
+    <div style = "text-align: center; max-width: 400px; margin: 0 auto 1.5rem auto">
+      <img src="{{ target_teacher.image.url }}" alt=""
+           style="height: 12rem; width: 12rem; border-radius: 20rem; margin-bottom:2rem; object-fit: cover;">
+      <h2 style="font-family: 'NanumSquareB'">
+        [{{ target_teacher.subject }}] {{ target_teacher.name }} 선생님
+      </h2>
+    </div>
+
+  </div>
+  <div>
+    <div>
+    <hr style = "display:flex; justify-content:center;">
+    </div>
+    <div style="--text-color:black;">
+        {% include 'snippets/lecture_list_fragment.html' with lecture_list=object_list %}
+    </div>
+  </div>
+
+{% endblock %}

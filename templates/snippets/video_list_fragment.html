@@ -1,0 +1,41 @@
+{% load static %}
+
+<style>
+  .container {
+    padding:0;
+    margin:0, auto;
+  }
+  .container a {
+    width: 45%;
+    max-width: 250px;
+  }
+  .container div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+
+  }
+
+  .container img {
+    width: 100%;
+    border-radius: 1rem;
+  }
+
+</style>
+  {% if video_list %}
+    <div class="container">
+      {% for video in video_list %}
+      <a href="{% url 'lectureapp:v_detail' pk=video.pk %}">
+        {% include 'snippets/card_video.html' with video=video %}
+      </a>
+      {% endfor %}
+    </div>
+  <script src="{% static 'js/magicgrid.js' %}"></script>
+  {% else %}
+    <div style="text-align:center;">
+      <h2>
+        등록된 영상이 없습니다
+      </h2>
+    </div>
+  {% endif %}

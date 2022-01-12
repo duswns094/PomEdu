@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+  .container {
+    padding:0;
+    margin:0, auto;
+  }
+
+  .container div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+
+  }
+
+  .container img {
+    width: 15rem;
+    height: 20rem;
+    object-fit: cover;
+    border-radius: 1rem;
+  }
+
+</style>
+
+<div style=" margin: 1rem 15% 1rem 15%; font-size: 20px;">
+   <div>
+      <a style="margin-right:1rem; ">전체</a>
+      <a style="margin-right:1rem; ">수학</a>
+      <a style="margin-right:1rem; ">국어</a>
+      <a style="margin-right:1rem; ">영어</a>
+      <a style="margin-right:1rem; ">과학</a>
+    </div>
+    <div>
+    <hr style = "display:flex; justify-content:center;">
+    </div>
+</div>
+
+
+
+  {% if teacher_list %}
+    <div class="container">
+      {% for teacher in teacher_list %}
+      <a href="{% url 'teacherapp:detail' pk=teacher.pk %}" style="--text-color:black">
+        {% include 'snippets/card_teacher.html' with teacher=teacher %}
+      </a>
+      {% endfor %}
+    </div>
+  <script src="{% static 'js/magicgrid.js' %}"></script>
+  {% else %}
+    <div style="text-align:center;">
+      <h2>
+        생성된 선생님이 없습니다
+      </h2>
+    </div>
+  {% endif %}
+
+{% endblock %}

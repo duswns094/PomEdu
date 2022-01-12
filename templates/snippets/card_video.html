@@ -1,0 +1,10 @@
+{% load embed_video_tags %}
+
+<div style="display: block;">
+    <p class="mt-2" style="font-family: 'NanumSquareB'; color:black;">
+        {{ video.name }}
+    </p>
+    {% video video.video as my_video %}
+    <img src="{{my_video.thumbnail}}" alt="">
+    {% endvideo %}
+</div>

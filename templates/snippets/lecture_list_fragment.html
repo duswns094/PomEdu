@@ -1,0 +1,43 @@
+{% load static %}
+
+<style>
+  .container {
+    padding:0;
+    margin:0, auto;
+  }
+  .container a {
+    width: 45%;
+    max-width: 250px;
+  }
+  .container div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+
+  }
+
+  .container img {
+    width: 15rem;
+    height: 20rem;
+    object-fit: cover;
+    border-radius: 1rem;
+  }
+
+</style>
+  {% if lecture_list %}
+    <div class="container">
+      {% for lecture in lecture_list %}
+      <a href="{% url 'lectureapp:detail' pk=lecture.pk %}">
+        {% include 'snippets/card_lecture.html' with lecture=lecture %}
+      </a>
+      {% endfor %}
+    </div>
+  <script src="{% static 'js/magicgrid.js' %}"></script>
+  {% else %}
+    <div style="text-align:center;">
+      <h2>
+        등록된 강의가 없습니다
+      </h2>
+    </div>
+  {% endif %}

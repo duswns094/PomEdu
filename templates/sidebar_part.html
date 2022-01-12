@@ -1,0 +1,117 @@
+{% load static %}
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar"  style="font-family:NanumSquareB">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+                <div class="sidebar-brand-icon" >
+                    <img src="{% static 'img/포엠로고.png' %}" width="70"></img>
+                </div>
+                <div class="sidebar-brand-text mx-2">포엠학원 <sup>센텀</sup></div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item {% if filename == 'index' %}active{% endif %}">
+                <a class="nav-link" href="/">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>대시보드</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                수강 관리
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item {% if collapse == 'components' %}active{% endif %}">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-chalkboard"></i>
+                    <span>강의 관리</span>
+                </a>
+                <div id="collapseTwo" class="collapse {% if collapse == 'components' %}show{% endif %}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Lecture Management:</h6>
+                        <a class="collapse-item {% if filename == '' %}active{% endif %}" href="{% url 'lectureapp:list' %}">강의 리스트</a>
+                        <a class="collapse-item {% if filename == '' %}active{% endif %}" href="#">테스트 관리</a>
+                        <a class="collapse-item {% if filename == '' %}active{% endif %}" href="#">과제 관리</a>
+                        <a class="collapse-item {% if filename == '' %}active{% endif %}" href="{% url 'lectureapp:create' %}">강의 등록</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item {% if collapse == 'utilities' %}active{% endif %}">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>수강생 관리</span>
+                </a>
+                <div id="collapseUtilities" class="collapse {% if collapse == 'utilities' %}show{% endif %}" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Students Management:</h6>
+                        <a class="collapse-item {% if filename == '' %}active{% endif %}" href="{% url 'studentapp:list' %}">수강생 리스트</a>
+                        <a class="collapse-item {% if filename == '' %}active{% endif %}" href="{% url 'studentapp:create' %}">수강생 등록</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                업무 관리
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item {% if collapse == 'pages' %}active{% endif %}">
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
+                    aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>업무 관리</span>
+                </a>
+                <div id="collapsePages" class="collapse  {% if collapse == 'pages' %}show{% endif %}" aria-labelledby="headingPages"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">수업 관련</h6>
+                        <a class="collapse-item {% if filename == '' %}active{% endif %}" href="#">상담 관리</a>
+                        <a class="collapse-item {% if filename == '' %}active{% endif %}" href="#">시간표 관리</a>
+                        <a class="collapse-item {% if filename == '' %}active{% endif %}" href="#">강사 관리</a>
+                        <div class="collapse-divider"></div>
+                        <h6 class="collapse-header">재무/회계</h6>
+                        <a class="collapse-item {% if filename == '' %}active{% endif %}" href="#">매출 관리</a>
+                        <a class="collapse-item {% if filename == '' %}active{% endif %}" href="#">수강료 납부 관리</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item {% if filename == 'charts' %}active{% endif %}">
+                <a class="nav-link " href="/charts.html">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Charts</span></a>
+            </li>
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item {% if filename == 'tables' %}active{% endif %}">
+                <a class="nav-link" href="/tables.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Tables</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>
