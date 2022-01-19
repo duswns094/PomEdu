@@ -5,7 +5,7 @@ from teacherapp.models import Teacher
 
 
 class TeacherAdmin(admin.ModelAdmin):
-    list_display = ['pk', 'name', 'subject']
+    list_display = ['pk', 'name', 'subject','is_activated']
     list_display_links = ['name']
 
 admin.site.register(Teacher, TeacherAdmin)

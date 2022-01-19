@@ -2,19 +2,32 @@
 {% load bootstrap4 %}
 {% block content %}
 <!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">수강생 등록</h1>
-<p class="mb-4"> 수강생 등록 화면입니다
+<h1 class="h3 mb-2 text-gray-800">학생 등록</h1>
+<p class="mb-4"> 포엠 신규 학생 등록 화면입니다
     </p>
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">수강생 등록</h6>
+        <h6 class="m-0 font-weight-bold text-primary">포엠 학생 등록</h6>
     </div>
     <div class="card-body">
         <div>
-          <form action = "{% url 'studentapp:create' %}" method ="post">
+         <form action = "{% url 'studentapp:create' %}" method ="post" enctype="multipart/form-data">
             {% csrf_token %}
-            {% bootstrap_form form%}
-            <input type = "submit" value="수강생 등록" class = 'btn btn-dark rounded-pill col-8 mt-4' width="100" >
+              <div class="form-group form-inline" >
+                  <div style="margin-right:1rem">{{form.name.label}} </div>  {{form.name}}
+              </div>
+              <div class="form-group form-inline" >
+                  <div style="margin-right:1rem">{{form.school.label}} </div>  {{form.school}}
+              </div>
+              <div class="form-group form-inline" >
+                  <div style="margin-right:1rem">{{form.grade.label}} </div>  {{form.grade}}
+              </div>
+              <div class="form-group form-inline" >
+                  <div style="margin-right:1rem">{{form.phone_number.label}} </div>  {{form.phone_number}}
+              </div>
+              <div style="text-align:right">
+                   <input type = "submit" value="학생 등록" class = 'btn btn-primary rounded-pill mt-4' >
+              </div>
           </form>
         </div>
     </div>

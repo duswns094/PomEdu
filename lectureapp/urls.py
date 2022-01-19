@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 
+from lectureapp import views
 from lectureapp.views import LectureListView, LectureDetailView, VideoDetailView, LectureCreateView
 
 app_name = 'lectureapp'
@@ -10,5 +11,6 @@ urlpatterns = [
     path('create/', LectureCreateView.as_view(), name='create'),
     path('detail/<int:pk>',LectureDetailView.as_view(), name='detail'),
     path('v_detail/<int:pk>',VideoDetailView.as_view(), name='v_detail'),
+
 ]
 

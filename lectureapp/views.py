@@ -1,9 +1,12 @@
 from django.contrib import messages
-from django.shortcuts import render
+from django.core import serializers
+from django.http import JsonResponse
+from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.urls import reverse
 from django.utils.decorators import method_decorator
+from django.views import View
 from django.views.generic import ListView, DetailView, CreateView
 from django.views.generic.list import MultipleObjectMixin
 
@@ -17,6 +20,14 @@ class LectureListView(ListView):
     queryset = Lecture.objects.filter(is_activated=1)
     context_object_name = 'lecture_list'
     template_name = 'lectureapp/list.html'
+
+    def post(self, request, *args, **kwargs):
+        if request.method == "POST":
+            lecture_ids = request.POST.getlist('id[]')
+            for id in lecture_ids:
+                lecture = Lecture.objects.get(pk=id)
+                lecture.delete()
+            return redirect('lectureapp:list')
 
 
 
