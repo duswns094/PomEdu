@@ -11,8 +11,8 @@ class Student(models.Model):
 
     name = models.CharField(max_length=10)
     school = models.CharField(max_length=20, null=True)
-    grade = models.CharField(max_length=5, choices=year_choices)
-    phone_number = models.CharField(max_length=10)
+    grade = models.CharField(max_length=2, choices=year_choices)
+    phone_number = models.CharField(max_length=11)
     created_at = models.DateField(auto_now_add=True,null=False)
 
     def __str__(self):

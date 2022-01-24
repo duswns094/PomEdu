@@ -16,9 +16,9 @@ subject_choices = (
 class Lecture(models.Model):
     name = models.CharField(max_length=100, null=False)
     teacher = models.ForeignKey(Teacher, on_delete=models.SET_NULL, related_name='lecture', null=True)
-    image = models.ImageField(upload_to='lecture/', null=True)
+    image = models.ImageField(upload_to='lecture/', null=True, blank=True)
     subject = models.CharField(max_length=20, choices=subject_choices, null=False)
-    description = models.TextField(null=True)
+    description = models.TextField(null=True,blank=True)
     is_activated = models.BooleanField(default=True)
     students = models.ManyToManyField(Student, through='Enrollment',related_name='lectures')
     opendate = models.DateField(null=True)

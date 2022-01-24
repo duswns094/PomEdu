@@ -19,49 +19,59 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <div style="margin-bottom:1rem">
-            <a href="{% url 'lectureapp:create' %}" class="btn btn-success btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-user-plus"></i>
-                                        </span>
-                                        <span class="text">생성</span>
-                                    </a>
-            {% csrf_token %}
-            <button type="submit" id="delete-lecture" class="btn btn-danger btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-trash"></i>
-                                        </span>
-                                        <span class="text">삭제</span>
-                                    </button>
-            </div>
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th><input type="checkbox" class="dt_all_chk"></th>
-                            <th>상태</th>
-                            <th>과목</th>
-                            <th>강의명</th>
-                            <th>강사</th>
-                            <th>수강인원</th>
-                            <th>개설일</th>
-                            <th>수강료</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for lecture in lecture_list %}
-                        <tr id="{{lecture.id}}">
-                            <td><input class="del-chk" type="checkbox" name="lecture_id[]" value="{{lecture.id}}" id="checked"></td>
-                            <td>{{ lecture.is_activated }}</td>
-                            <td>{{ lecture.subject }}</td>
-                            <td>{{ lecture.name }}</td>
-                            <td>{{ lecture.teacher }}</td>
-                            <td>{{ lecture.students.all|length }}</td>
-                            <td>{{ lecture.opendate}}</td>
-                            <td>{{ lecture.cost }}</td>
-                        </tr>
-                        {% endfor %}
-                </tbody>
-            </table>
+
+                <div style="margin-bottom:1rem">
+                    <a href="{% url 'lectureapp:create' %}" class="btn btn-success btn-icon-split">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-user-plus"></i>
+                        </span>
+                        <span class="text">생성</span>
+                    </a>
+                    <a onclick="CheckItemDelete()" href="#" class="btn btn-danger btn-icon-split" name="del-action" value="delete">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-trash"></i>
+                        </span>
+                        <span class="text">삭제</span>
+                    </a>
+                    <a onclick="CheckItemDisable()" href="#"class="btn btn-warning btn-icon-split" name="dis-action" value="disable">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-ban"></i>
+                        </span>
+                        <span class="text">비활성화</span>
+                    </a>
+                </div>
+            <form id="frm" method="post" action="{% url 'lectureapp:list' %}">
+                {% csrf_token %}
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" class="dt_all_chk"></th>
+                                <th>상태</th>
+                                <th>과목</th>
+                                <th id="aee">강의명</th>
+                                <th>강사</th>
+                                <th>수강인원</th>
+                                <th>개설일</th>
+                                <th>수강료</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for lecture in lecture_list %}
+                            <tr id="{{lecture.id}}">
+                                <td><input class="del-chk" type="checkbox" name="lecture_id[]" value="{{lecture.id}}" id="checked"></td>
+                                <td>{% if lecture.is_activated == 1 %}진행중{% else %}종료{% endif %} </td>
+                                <td>{{ lecture.get_subject_display }}</td>
+                                <td>{{ lecture.name }}</td>
+                                <td>{{ lecture.teacher }}</td>
+                                <td>{{ lecture.students.all|length }}명</td>
+                                <td>{{ lecture.opendate}}</td>
+                                <td>₩{{ lecture.cost }}</td>
+                            </tr>
+                            {% endfor %}
+                            <button type="submit"></button>
+                    </tbody>
+                </table>
+            </form>
         </div>
     </div>
 </div>

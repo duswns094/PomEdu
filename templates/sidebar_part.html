@@ -58,7 +58,8 @@
                         <h6 class="collapse-header">Students Management:</h6>
                         <a class="collapse-item {% if filename == '' %}active{% endif %}" href="{% url 'studentapp:list' %}">학생 리스트</a>
                         <a class="collapse-item {% if filename == '' %}active{% endif %}" href="{% url 'studentapp:create' %}">학생 등록</a>
-                        <a class="collapse-item {% if filename == '' %}active{% endif %}" href="#">학생 수강 등록</a>
+                        <a class="collapse-item {% if filename == '' %}active{% endif %}" href="{% url 'studentapp:enrollment_list' %}">학생 수강 리스트</a>
+                        <a class="collapse-item {% if filename == '' %}active{% endif %}" href="{% url 'studentapp:enrollment_create' %}">학생 수강 등록</a>
                     </div>
                 </div>
             </li>
